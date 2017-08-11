@@ -23,6 +23,8 @@ mypath = 'uploads/'
 # These are the extension that we are accepting to be uploaded
 app.config['ALLOWED_EXTENSIONS'] = set(['pptx'])
 
+
+#---------------------------------------------------------------------------------------------------------Allowed File
 # For a given file, return whether it's an allowed type or not
 def allowed_file(filename):
     return '.' in filename and \
@@ -31,11 +33,13 @@ def allowed_file(filename):
 # This route will show a form to perform an AJAX request
 # jQuery is loaded to execute the request and update the
 # value of the operation
+
+#---------------------------------------------------------------------------------------------------------Root Directory
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
+#---------------------------------------------------------------------------------------------------------Save in upload Directory
 # Route that will process the file upload
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -67,7 +71,7 @@ def upload():
         return redirect(url_for('uploaded_file',
                                 filename=returnVal))
 
-
+#---------------------------------------------------------------------------------------------------------Extract zip 
 def extractZip():
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     for f in onlyfiles:
@@ -78,7 +82,7 @@ def extractZip():
         zip_ref.close()
 
 
-
+#---------------------------------------------------------------------------------------------------------Copy media files to root
 def copytree1(src, dst, symlinks=False, ignore=None):
     for item in os.listdir(src):
         s = os.path.join(src, item)
@@ -88,6 +92,7 @@ def copytree1(src, dst, symlinks=False, ignore=None):
         else:
             shutil.copy2(s, d)
 
+#---------------------------------------------------------------------------------------------------------Remove Images
 def removePics():
     d = path(mypath)
 
@@ -101,6 +106,7 @@ def removePics():
     for file in filespng:
         file.remove()
 
+#---------------------------------------------------------------------------------------------------------Move from uploads to upload
 def copytree2(src, dst, symlinks=False, ignore=None):
     onlyfiles = [f for f in listdir('C:/Users/puchil/Documents/upload/uploads') if isfile(join('C:/Users/puchil/Documents/upload/uploads', f))]
     gifList=[]
@@ -114,7 +120,7 @@ def copytree2(src, dst, symlinks=False, ignore=None):
             shutil.copy2(s, d)
 
 
-   
+#---------------------------------------------------------------------------------------------------------Convert gif to swf   
 def swfconv():
     onlyfiles = [f for f in listdir('C:/Users/puchil/Documents/upload/') if isfile(join('C:/Users/puchil/Documents/upload/', f))]
     gifList=[]
@@ -156,7 +162,7 @@ def swfconv():
     zipname="swfCollection.zip"
     return zipname
 
-
+#---------------------------------------------------------------------------------------------------------Remove gifs
 def removeGifs():
     d = path(mypath)
 
@@ -177,6 +183,7 @@ def removeGifs():
         if file[-17:] != "swfCollection.zip":
             file.remove()
 
+#---------------------------------------------------------------------------------------------------------Clean-up root directory
 def removeFolders():
     shutil.rmtree(mypath+'/_rels')
     shutil.rmtree(mypath+'/docProps')
