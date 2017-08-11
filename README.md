@@ -2,7 +2,7 @@
 
 A Flask based web utility to get swf files from your pptx files.
 
-Windows running instructions:
+Windows running instructions:<br>
 set FLASK_APP=app.py<br>
 flask run 
 
