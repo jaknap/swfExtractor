@@ -1,3 +1,7 @@
+'''
+
+Flask based utility tool to extract SWF files from a Pptx file
+'''
 import os, glob
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from werkzeug import secure_filename
