@@ -2,6 +2,14 @@
 
 A Flask based web utility to get swf files from your pptx files.
 
+Download the ffpmeg command-line utility for your OS:<br>
+https://www.ffmpeg.org/download.html
+
+
+Py Packages needed:<br>
+ffmpy: pip install ffmpy<br>
+flask: pip install flask
+
 Windows running instructions:<br>
 set FLASK_APP=app.py<br>
 flask run 
