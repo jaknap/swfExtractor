@@ -3,8 +3,8 @@
 A Flask based web utility to get swf files from your pptx files.
 
 Windows running instructions:
-set FLASK_APP=app.py
-flaskk run 
+set FLASK_APP=app.py<br>
+flask run 
 
 Your app should be running on port 80
 
